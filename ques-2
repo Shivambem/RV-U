@@ -1,0 +1,25 @@
+import fractions
+
+def sum_egyptian_fractions(fractions_list):
+    sum_fraction = sum(fractions_list)
+    return sum_fraction
+
+def simplify_fraction(numerator, denominator):
+    gcd = fractions.gcd(numerator, denominator)
+    return numerator // gcd, denominator // gcd
+
+def main():
+    num_instances = int(input("Enter the number of instances: "))
+    
+    for _ in range(num_instances):
+        num_fractions = int(input("Enter the number of unit fractions: "))
+        fractions_str = input("Enter the sequence of unit fractions: ").split()
+        fractions_list = [fractions.Fraction(fraction_str) for fraction_str in fractions_str]
+
+        sum_fraction = sum_egyptian_fractions(fractions_list)
+        simplified_fraction = simplify_fraction(sum_fraction.numerator, sum_fraction.denominator)
+
+        print('+'.join(map(str, fractions_list)), '=', f"{simplified_fraction[0]}/{simplified_fraction[1]}")
+
+if __name__ == "__main__":
+    main()
